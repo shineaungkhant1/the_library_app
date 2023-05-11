@@ -3,13 +3,59 @@ import 'package:the_library_app/components/smart_list_view.dart';
 import 'package:the_library_app/utils/dimens.dart';
 import 'package:the_library_app/view_layer/ebooks_and_audiobooks_view.dart';
 
+import '../widgets/title_text.dart';
 
+class TitleAndHorizontalEbooksAndAudiobooksListView extends StatelessWidget {
+  final String title;
+  final Function onListEachReached;
+  final bool isAudioBooks;
+
+  const TitleAndHorizontalEbooksAndAudiobooksListView(
+      {super.key, required this.title, required this.onListEachReached,required this.isAudioBooks});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Container(
+          //   margin: const EdgeInsets.only(left: MARGIN_MEDIUM_2),
+          //   child: TitleText(title),
+          // ),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: MARGIN_MEDIUM_2,
+                right: MARGIN_MEDIUM_2,
+                top: MARGIN_LARGE_2),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children:  [
+                TitleText(title),
+                Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: Colors.blue,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: MARGIN_MEDIUM),
+          HorizontalEbooksAndAudioBooksListView(
+            onListEndReached: () {
+              onListEachReached();
+            }, isAudioBooks: false,
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class HorizontalEbooksAndAudioBooksListView extends StatelessWidget {
   final Function onListEndReached;
-
+  final bool isAudioBooks;
   const HorizontalEbooksAndAudioBooksListView(
-      {super.key, required this.onListEndReached});
+      {super.key, required this.onListEndReached, required this.isAudioBooks});
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +77,14 @@ class HorizontalEbooksAndAudioBooksListView extends StatelessWidget {
       "UX For Beginners: A Crash"
     ];
 
-
-
     return Expanded(
       child: SmartHorizontalListView(
           itemCount: imgList.length,
           padding: const EdgeInsets.only(left: MARGIN_MEDIUM_2),
           itemBuilder: (BuildContext context, int index) {
-            return  EbooksAndAudioBooksView(
-              imgList:imgList[index] ,
-              bookNameList:bookNameList[index],
+            return EbooksAndAudioBooksView(
+              imgList: imgList[index],
+              bookNameList: bookNameList[index], isAudioBooks: false,
             );
           },
           onListEndReached: () {
