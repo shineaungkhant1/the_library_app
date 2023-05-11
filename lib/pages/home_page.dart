@@ -12,8 +12,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late TabController controller;
   int currentIndex = 0;
 
@@ -43,12 +43,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         .map(
           (item) => Container(
             margin: const EdgeInsets.all(5.0),
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(blurRadius: MARGIN_MEDIUM_5, color: Colors.black38)
-              ],
-              borderRadius: BorderRadius.all(Radius.circular(15))
-            ),
+            decoration: const BoxDecoration(boxShadow: [
+              BoxShadow(blurRadius: MARGIN_MEDIUM_5, color: Colors.black38)
+            ], borderRadius: BorderRadius.all(Radius.circular(15))),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(15.0)),
               child: Stack(
@@ -79,28 +76,29 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   ),
                   Positioned(
                     right: DOT_POSTIONED_RIGHT,
-                      top: DOT_POSTIONED_TOP,
-                      child: Row(
-                    children: const [
-                      Icon(
-                        Icons.circle,
-                        size: MARGIN_SMALL_2,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: EXTRA_SMALL),
-                      Icon(
-                        Icons.circle,
-                        size: MARGIN_SMALL_2,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: EXTRA_SMALL),
-                      Icon(
-                        Icons.circle,
-                        size: MARGIN_SMALL_2,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ))
+                    top: DOT_POSTIONED_TOP,
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.circle,
+                          size: MARGIN_SMALL_2,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: EXTRA_SMALL),
+                        Icon(
+                          Icons.circle,
+                          size: MARGIN_SMALL_2,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: EXTRA_SMALL),
+                        Icon(
+                          Icons.circle,
+                          size: MARGIN_SMALL_2,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -122,14 +120,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               [
                 const SizedBox(height: MARGIN_MEDIUM_4),
                 SliderView(imageSliders: imageSliders),
-                const SizedBox(height: MARGIN_XXLARGE,),
+                const SizedBox(
+                  height: MARGIN_XXLARGE,
+                ),
                 TabBar(
                   controller: controller,
                   labelColor: Colors.blue,
                   indicatorSize: TabBarIndicatorSize.label,
                   unselectedLabelColor: Colors.grey,
-                  unselectedLabelStyle:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  unselectedLabelStyle: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w700),
                   labelStyle: const TextStyle(
                       color: Color.fromRGBO(85, 85, 85, 1.0),
                       fontSize: 16,
@@ -143,14 +143,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     )
                   ],
                 ),
-                Container(
-                  height: 2000,
+                SizedBox(
+                  height: HORIZONTAL_LIST_VIEW_HEIGHT,
                   child: TabBarView(
                     controller: controller,
                     children: [
-                      EbooksView(onTapNowShowing: (){}),
-                      EbooksView(onTapNowShowing: (){})
-                  ],
+                      EbooksView(onTapNowShowing: () {}),
+                      EbooksView(onTapNowShowing: () {})
+                    ],
                   ),
                 ),
               ],

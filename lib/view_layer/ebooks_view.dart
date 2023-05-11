@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_library_app/utils/dimens.dart';
+import 'package:the_library_app/view_layer/horizontal_ebooks_and_audiobooks_list_view.dart';
 
 class EbooksView extends StatefulWidget {
   final Function onTapNowShowing;
@@ -11,7 +13,6 @@ class EbooksView extends StatefulWidget {
 }
 
 class _EbooksViewState extends State<EbooksView> {
-
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -39,7 +40,7 @@ class _EbooksViewState extends State<EbooksView> {
                   " (3rd Edition) (Voices That Matter) 3rd Edition ",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  style: TextStyle(fontSize: TEXT_REGULAR_3X, color: Colors.black),
                 ),
               ),
               Icon(
@@ -49,21 +50,24 @@ class _EbooksViewState extends State<EbooksView> {
             ],
           ),
         ),
-        const SizedBox(height: MARGIN_MEDIUM,),
-        Expanded(
-          child: SizedBox(
-            // height: 200,
-            // width: 200,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: imgList.length, // Replace images with your list of image URLs
-              itemBuilder: (BuildContext context, int index) {
-                return  Image.network(imgList[index],fit: BoxFit.cover,width: 20,height: 20,);
-              },
-            ),
-          ),
-        )
-
+        const SizedBox(
+          height: MARGIN_MEDIUM,
+        ),
+        // SizedBox(
+        //   height: 200,
+        //   child: ListView.separated(
+        //     scrollDirection: Axis.horizontal,
+        //     itemCount: imgList.length, // Replace images with your list of image URLs
+        //     itemBuilder: (BuildContext context, int index) {
+        //       return  Image.network(imgList[index],fit: BoxFit.cover,width: 200,);
+        //     }, separatorBuilder: (BuildContext context, int index) {
+        //       return SizedBox(width: MARGIN_MEDIUM);
+        //   },
+        //   ),
+        // )
+        HorizontalEbooksAndAudioBooksListView(
+          onListEndReached: () {},
+        ),
       ],
     );
   }
