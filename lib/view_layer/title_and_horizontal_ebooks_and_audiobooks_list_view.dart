@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_library_app/components/smart_list_view.dart';
+import 'package:the_library_app/pages/book_item_type_page.dart';
 import 'package:the_library_app/utils/dimens.dart';
 import 'package:the_library_app/view_layer/ebooks_and_audiobooks_view.dart';
 
@@ -8,10 +9,9 @@ import '../widgets/title_text.dart';
 class TitleAndHorizontalEbooksAndAudiobooksListView extends StatelessWidget {
   final String title;
   final Function onListEachReached;
-  final bool isAudioBooks;
 
   const TitleAndHorizontalEbooksAndAudiobooksListView(
-      {super.key, required this.title, required this.onListEachReached,required this.isAudioBooks});
+      {super.key, required this.title, required this.onListEachReached});
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +28,28 @@ class TitleAndHorizontalEbooksAndAudiobooksListView extends StatelessWidget {
                 left: MARGIN_MEDIUM_2,
                 right: MARGIN_MEDIUM_2,
                 top: MARGIN_LARGE_2),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:  [
-                TitleText(title),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: Colors.blue,
-                ),
-              ],
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) =>BookItemTypePage() ));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:  [
+                  TitleText(title),
+                  Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: Colors.blue,
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: MARGIN_MEDIUM),
           HorizontalEbooksAndAudioBooksListView(
             onListEndReached: () {
               onListEachReached();
-            }, isAudioBooks: false,
+            },
           ),
         ],
       ),
@@ -53,9 +59,9 @@ class TitleAndHorizontalEbooksAndAudiobooksListView extends StatelessWidget {
 
 class HorizontalEbooksAndAudioBooksListView extends StatelessWidget {
   final Function onListEndReached;
-  final bool isAudioBooks;
+
   const HorizontalEbooksAndAudioBooksListView(
-      {super.key, required this.onListEndReached, required this.isAudioBooks});
+      {super.key, required this.onListEndReached});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +90,7 @@ class HorizontalEbooksAndAudioBooksListView extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return EbooksAndAudioBooksView(
               imgList: imgList[index],
-              bookNameList: bookNameList[index], isAudioBooks: false,
+              bookNameList: bookNameList[index],
             );
           },
           onListEndReached: () {

@@ -2,7 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:the_library_app/view_layer/audiobooks_view.dart';
 import 'package:the_library_app/view_layer/ebooks_view.dart';
+import 'package:the_library_app/widgets/dot_bottom_sheet.dart';
+import 'package:the_library_app/widgets/title_text.dart';
 import '../custom_layouts/custom_layouts.dart';
+import '../utils/colors.dart';
 import '../utils/dimens.dart';
 import '../widgets/search_bar.dart';
 
@@ -13,8 +16,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late TabController controller;
   int currentIndex = 0;
 
@@ -44,12 +47,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         .map(
           (item) => Container(
             margin: const EdgeInsets.all(5.0),
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(blurRadius: MARGIN_MEDIUM_5, color: Colors.black38)
-              ],
-              borderRadius: BorderRadius.all(Radius.circular(15))
-            ),
+            decoration: const BoxDecoration(boxShadow: [
+              BoxShadow(blurRadius: MARGIN_MEDIUM_5, color: Colors.black38)
+            ], borderRadius: BorderRadius.all(Radius.circular(15))),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(15.0)),
               child: Stack(
@@ -57,17 +57,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   Image.network(
                     item,
                     fit: BoxFit.cover,
-                    width: 300.0,
+                    width: 300,
                     height: 300,
                   ),
                   Positioned(
-                    bottom: 30.0,
+                    bottom: 10.0,
                     left: 0.0,
                     right: 0.0,
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: MARGIN_MEDIUM, right: MARGIN_MEDIUM),
-                      child: Column(children: [
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
@@ -75,33 +77,50 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             DownloadedIconShow(isDownloaded: false)
                           ],
                         ),
-                      ]),
+                        const SizedBox(height: MARGIN_SMALL_2),
+                        const MusicBar(isMusicBar: true,),
+                      ],
+                      ),
                     ),
                   ),
                   Positioned(
-                    right: DOT_POSTIONED_RIGHT,
+                      right: DOT_POSTIONED_RIGHT,
                       top: DOT_POSTIONED_TOP,
-                      child: Row(
-                    children: const [
-                      Icon(
-                        Icons.circle,
-                        size: MARGIN_SMALL_2,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: EXTRA_SMALL),
-                      Icon(
-                        Icons.circle,
-                        size: MARGIN_SMALL_2,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: EXTRA_SMALL),
-                      Icon(
-                        Icons.circle,
-                        size: MARGIN_SMALL_2,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ))
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return DotBottomSheet(
+                                  titleName: "Dummy Text Title",
+                                  authorName: "Dummy Text Author",
+                                  image: item,
+                                  isCarouselSlider: true,
+                                );
+                              });
+                        },
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.circle,
+                              size: MARGIN_SMALL_2,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: EXTRA_SMALL),
+                            Icon(
+                              Icons.circle,
+                              size: MARGIN_SMALL_2,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: EXTRA_SMALL),
+                            Icon(
+                              Icons.circle,
+                              size: MARGIN_SMALL_2,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ))
                 ],
               ),
             ),
@@ -112,7 +131,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
         automaticallyImplyLeading: false,
         title: const SearchBar(),
       ),
@@ -123,14 +141,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               [
                 const SizedBox(height: MARGIN_MEDIUM_4),
                 SliderView(imageSliders: imageSliders),
-                const SizedBox(height: MARGIN_XXLARGE,),
+                const SizedBox(
+                  height: MARGIN_XXLARGE,
+                ),
                 TabBar(
                   controller: controller,
                   labelColor: Colors.blue,
                   indicatorSize: TabBarIndicatorSize.label,
                   unselectedLabelColor: Colors.grey,
-                  unselectedLabelStyle:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  unselectedLabelStyle: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w700),
                   labelStyle: const TextStyle(
                       color: Color.fromRGBO(85, 85, 85, 1.0),
                       fontSize: 16,
@@ -149,8 +169,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   child: TabBarView(
                     controller: controller,
                     children: [
-                      EbooksView(isAudioBooks: false,),
-                      AudiobooksView(isAudioBooks: true,)
+                      EbooksView(),
+                      AudiobooksView(),
                     ],
                   ),
                 ),

@@ -6,11 +6,6 @@ import 'package:the_library_app/view_layer/title_and_horizontal_ebooks_and_audio
 import '../utils/strings.dart';
 
 class AudiobooksView extends StatefulWidget {
- final bool isAudioBooks;
-
-
- AudiobooksView({required this.isAudioBooks});
-
   @override
   State<AudiobooksView> createState() => _AudiobooksViewState();
 }
@@ -21,7 +16,7 @@ class _AudiobooksViewState extends State<AudiobooksView> {
     return Column(
       children: [
        TitleAndHorizontalEbooksAndAudiobooksListView(title: AUDIO_BOOKS_FOR_YOU, onListEachReached: (){
-       }, isAudioBooks: true,),
+       }),
       ],
     );
   }

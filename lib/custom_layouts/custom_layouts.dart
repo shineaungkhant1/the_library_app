@@ -37,11 +37,37 @@ class MusicIconShow extends StatelessWidget {
         BorderRadius.all(Radius.circular(3)),
         color: Colors.black45,
       ),
-      child: (isMusic) ?Icon(
+      child: (isMusic) ?const Icon(
         Icons.headphones,
         color: Colors.white,
       ):Container()
     );
   }
 }
+
+class MusicBar extends StatelessWidget {
+  final bool isMusicBar;
+
+  const MusicBar({super.key,this.isMusicBar=false});
+
+  @override
+  Widget build(BuildContext context) {
+    return (isMusicBar)?Container(
+      height: 2, // set the height of the bar
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.center,
+          colors: [
+            Colors.white,
+            Colors.black,
+          ],
+        ),
+
+      ),
+    ):Container();
+
+  }
+}
+
 

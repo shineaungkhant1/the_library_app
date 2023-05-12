@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:the_library_app/custom_layouts/custom_layouts.dart';
 import 'package:the_library_app/utils/dimens.dart';
 
+import '../widgets/dot_bottom_sheet.dart';
+
 class EbooksAndAudioBooksView extends StatelessWidget {
   final String imgList;
   final String bookNameList;
-  final bool isAudioBooks;
+
 
   const EbooksAndAudioBooksView(
-      {super.key, required this.imgList, required this.bookNameList, this.isAudioBooks=false});
+      {super.key, required this.imgList, required this.bookNameList});
 
   @override
   Widget build(BuildContext context) {
@@ -42,33 +44,37 @@ class EbooksAndAudioBooksView extends StatelessWidget {
           Positioned(
             right: 12,
             top: 12,
-            child: Row(
-              children: const [
-                Icon(
-                  Icons.circle,
-                  size: MARGIN_SMALL_2,
-                  color: Colors.white,
-                ),
-                SizedBox(width: EXTRA_SMALL),
-                Icon(
-                  Icons.circle,
-                  size: MARGIN_SMALL_2,
-                  color: Colors.white,
-                ),
-                SizedBox(width: EXTRA_SMALL),
-                Icon(
-                  Icons.circle,
-                  size: MARGIN_SMALL_2,
-                  color: Colors.white,
-                ),
-              ],
+            child: GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return DotBottomSheet(titleName: "Dummy Text Title", authorName: "Dummy Text Author", image: imgList, isCarouselSlider: false,) ;
+                    });
+              },
+              child: Row(
+                children: const [
+                  Icon(
+                    Icons.circle,
+                    size: MARGIN_SMALL_2,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: EXTRA_SMALL),
+                  Icon(
+                    Icons.circle,
+                    size: MARGIN_SMALL_2,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: EXTRA_SMALL),
+                  Icon(
+                    Icons.circle,
+                    size: MARGIN_SMALL_2,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           ),
-          (isAudioBooks)?Positioned(
-            left: 12,
-            bottom: 65,
-            child: MusicIconShow(isMusic: true),
-          ):Container(),
         ]),
       ),
     );

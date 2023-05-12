@@ -13,7 +13,6 @@ class TitleText extends StatelessWidget {
     return Expanded(
       child: Text(
         text,
-        maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(
             color: MAIN_HOME_SCREEN_LIST_TITLE_COLOR,
