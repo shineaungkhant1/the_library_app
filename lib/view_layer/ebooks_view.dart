@@ -18,11 +18,11 @@ class _EbooksViewState extends State<EbooksView> {
     return Column(
       children: [
        TitleAndHorizontalEbooksAndAudiobooksListView(title: MORE_LIKE, onListEachReached: (){
-       }, ),
+       }, isEbooks: true, ),
         TitleAndHorizontalEbooksAndAudiobooksListView(title: E_BOOKS_FOR_YOU, onListEachReached: (){
-        },),
+        }, isEbooks: true,),
         TitleAndHorizontalEbooksAndAudiobooksListView(title: ON_YOUR_WISHLIST, onListEachReached: (){
-        }, ),
+        }, isEbooks: true, ),
       ],
     );
   }

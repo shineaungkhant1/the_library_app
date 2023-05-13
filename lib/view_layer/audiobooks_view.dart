@@ -16,7 +16,7 @@ class _AudiobooksViewState extends State<AudiobooksView> {
     return Column(
       children: [
        TitleAndHorizontalEbooksAndAudiobooksListView(title: AUDIO_BOOKS_FOR_YOU, onListEachReached: (){
-       }),
+       }, isEbooks: false,),
       ],
     );
   }

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:the_library_app/components/smart_list_view.dart';
-import 'package:the_library_app/pages/book_item_type_page.dart';
+import 'package:the_library_app/pages/ebooks_grid_view_page.dart';
 import 'package:the_library_app/utils/dimens.dart';
 import 'package:the_library_app/view_layer/ebooks_and_audiobooks_view.dart';
 
+import '../pages/audiobooks_grid_view_page.dart';
 import '../widgets/title_text.dart';
 
 class TitleAndHorizontalEbooksAndAudiobooksListView extends StatelessWidget {
   final String title;
   final Function onListEachReached;
+  bool isEbooks= true;
 
-  const TitleAndHorizontalEbooksAndAudiobooksListView(
-      {super.key, required this.title, required this.onListEachReached});
+   TitleAndHorizontalEbooksAndAudiobooksListView(
+      {super.key, required this.title, required this.onListEachReached,required this.isEbooks});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,9 @@ class TitleAndHorizontalEbooksAndAudiobooksListView extends StatelessWidget {
                 top: MARGIN_LARGE_2),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) =>BookItemTypePage() ));
+                (isEbooks)?Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) =>EbooksGridViewPage() )):Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) =>AudiobooksGridViewPage() ));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

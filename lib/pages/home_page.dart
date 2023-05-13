@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage>
       'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
       'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
     ];
+    final List<double> tabHeights = [0, 0];
 
     final List<Widget> imageSliders = imgList
         .map(
@@ -165,7 +166,7 @@ class _HomePageState extends State<HomePage>
                   ],
                 ),
                 Container(
-                  height: HORIZONTAL_LIST_VIEW_HEIGHT,
+                 height: HORIZONTAL_LIST_VIEW_HEIGHT,
                   child: TabBarView(
                     controller: controller,
                     children: [
@@ -179,6 +180,71 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
+      // body: CustomScrollView(
+      //   slivers: [
+      //     SliverList(
+      //       delegate: SliverChildListDelegate(
+      //         [
+      //           const SizedBox(height: MARGIN_MEDIUM_4),
+      //           SliderView(imageSliders: imageSliders),
+      //           const SizedBox(
+      //             height: MARGIN_XXLARGE,
+      //           ),
+      //           TabBar(
+      //             controller: controller,
+      //             labelColor: Colors.blue,
+      //             indicatorSize: TabBarIndicatorSize.label,
+      //             unselectedLabelColor: Colors.grey,
+      //             unselectedLabelStyle: const TextStyle(
+      //                 fontSize: 16, fontWeight: FontWeight.w700),
+      //             labelStyle: const TextStyle(
+      //                 color: Color.fromRGBO(85, 85, 85, 1.0),
+      //                 fontSize: 16,
+      //                 fontWeight: FontWeight.w700),
+      //             tabs: const [
+      //               Tab(
+      //                 child: Text("Ebooks"),
+      //               ),
+      //               Tab(
+      //                 child: Text("Audiobooks"),
+      //               )
+      //             ],
+      //           ),
+      //           AnimatedSize(
+      //             duration: const Duration(milliseconds: 300),
+      //             curve: Curves.easeInOut,
+      //             child: SizedBox(
+      //               height: tabHeights[controller.index],
+      //               child: TabBarView(
+      //                 controller: controller,
+      //                 children: [
+      //                   Builder(
+      //                     builder: (BuildContext context) {
+      //                       final Size size =
+      //                           (context.findRenderObject() as RenderBox)
+      //                               .size;
+      //                       tabHeights[0] = size.height;
+      //                       return EbooksView();
+      //                     },
+      //                   ),
+      //                   Builder(
+      //                     builder: (BuildContext context) {
+      //                       final Size size =
+      //                           (context.findRenderObject() as RenderBox)
+      //                               .size;
+      //                       tabHeights[1] = size.height;
+      //                       return AudiobooksView();
+      //                     },
+      //                   ),
+      //                 ],
+      //               ),
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ],
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey,
@@ -192,10 +258,7 @@ class _HomePageState extends State<HomePage>
             icon: Icon(Icons.library_books_outlined),
             label: "Library",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_add_outlined),
-            label: "Wishlist",
-          ),
+
         ],
       ),
     );
