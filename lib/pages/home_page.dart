@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:the_library_app/pages/books_detail_page.dart';
 import 'package:the_library_app/view_layer/audiobooks_view.dart';
 import 'package:the_library_app/view_layer/ebooks_view.dart';
 import 'package:the_library_app/widgets/dot_bottom_sheet.dart';
@@ -71,16 +72,18 @@ class _HomePageState extends State<HomePage>
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            MusicIconShow(isMusic: true),
-                            DownloadedIconShow(isDownloaded: false)
-                          ],
-                        ),
-                        const SizedBox(height: MARGIN_SMALL_2),
-                        const MusicBar(isMusicBar: true,),
-                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              MusicIconShow(isMusic: true),
+                              DownloadedIconShow(isDownloaded: false)
+                            ],
+                          ),
+                          const SizedBox(height: MARGIN_SMALL_2),
+                          const MusicBar(
+                            isMusicBar: true,
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -135,116 +138,80 @@ class _HomePageState extends State<HomePage>
         automaticallyImplyLeading: false,
         title: const SearchBar(),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                const SizedBox(height: MARGIN_MEDIUM_4),
-                SliderView(imageSliders: imageSliders),
-                const SizedBox(
-                  height: MARGIN_XXLARGE,
-                ),
-                TabBar(
-                  controller: controller,
-                  labelColor: Colors.blue,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  unselectedLabelColor: Colors.grey,
-                  unselectedLabelStyle: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w700),
-                  labelStyle: const TextStyle(
-                      color: Color.fromRGBO(85, 85, 85, 1.0),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700),
-                  tabs: const [
-                    Tab(
-                      child: Text("Ebooks"),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              backgroundColor: Colors.white,
+              expandedHeight: 330,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Column(
+                  children: [
+                    const SizedBox(height: MARGIN_MEDIUM_4),
+                    SliderView(imageSliders: imageSliders),
+                    const SizedBox(
+                      height: MARGIN_XLARGE,
                     ),
-                    Tab(
-                      child: Text("Audiobooks"),
-                    )
                   ],
                 ),
-                Container(
-                 height: HORIZONTAL_LIST_VIEW_HEIGHT,
-                  child: TabBarView(
-                    controller: controller,
-                    children: [
-                      EbooksView(),
-                      AudiobooksView(),
-                    ],
-                  ),
+              ),
+            )
+          ];
+        },
+        body: Column(
+          children: [
+            TabBar(
+              controller: controller,
+              labelColor: Colors.blue,
+              indicatorSize: TabBarIndicatorSize.label,
+              unselectedLabelColor: Colors.grey,
+              unselectedLabelStyle:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              labelStyle: const TextStyle(
+                  color: Color.fromRGBO(85, 85, 85, 1.0),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700),
+              tabs: const [
+                Tab(
+                  child: Text("Ebooks"),
                 ),
+                Tab(
+                  child: Text("Audiobooks"),
+                )
               ],
             ),
-          ),
-        ],
+            Expanded(
+              child: TabBarView(
+                controller: controller,
+                children: [
+                  SingleChildScrollView(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const BooksDetail()),
+                        );
+                      },
+                      child: EbooksView(),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const BooksDetail()),
+                        );
+                      },
+                      child: AudiobooksView(),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
-      // body: CustomScrollView(
-      //   slivers: [
-      //     SliverList(
-      //       delegate: SliverChildListDelegate(
-      //         [
-      //           const SizedBox(height: MARGIN_MEDIUM_4),
-      //           SliderView(imageSliders: imageSliders),
-      //           const SizedBox(
-      //             height: MARGIN_XXLARGE,
-      //           ),
-      //           TabBar(
-      //             controller: controller,
-      //             labelColor: Colors.blue,
-      //             indicatorSize: TabBarIndicatorSize.label,
-      //             unselectedLabelColor: Colors.grey,
-      //             unselectedLabelStyle: const TextStyle(
-      //                 fontSize: 16, fontWeight: FontWeight.w700),
-      //             labelStyle: const TextStyle(
-      //                 color: Color.fromRGBO(85, 85, 85, 1.0),
-      //                 fontSize: 16,
-      //                 fontWeight: FontWeight.w700),
-      //             tabs: const [
-      //               Tab(
-      //                 child: Text("Ebooks"),
-      //               ),
-      //               Tab(
-      //                 child: Text("Audiobooks"),
-      //               )
-      //             ],
-      //           ),
-      //           AnimatedSize(
-      //             duration: const Duration(milliseconds: 300),
-      //             curve: Curves.easeInOut,
-      //             child: SizedBox(
-      //               height: tabHeights[controller.index],
-      //               child: TabBarView(
-      //                 controller: controller,
-      //                 children: [
-      //                   Builder(
-      //                     builder: (BuildContext context) {
-      //                       final Size size =
-      //                           (context.findRenderObject() as RenderBox)
-      //                               .size;
-      //                       tabHeights[0] = size.height;
-      //                       return EbooksView();
-      //                     },
-      //                   ),
-      //                   Builder(
-      //                     builder: (BuildContext context) {
-      //                       final Size size =
-      //                           (context.findRenderObject() as RenderBox)
-      //                               .size;
-      //                       tabHeights[1] = size.height;
-      //                       return AudiobooksView();
-      //                     },
-      //                   ),
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ],
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey,
@@ -258,7 +225,6 @@ class _HomePageState extends State<HomePage>
             icon: Icon(Icons.library_books_outlined),
             label: "Library",
           ),
-
         ],
       ),
     );

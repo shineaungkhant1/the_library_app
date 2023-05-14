@@ -17,12 +17,24 @@ class _EbooksViewState extends State<EbooksView> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-       TitleAndHorizontalEbooksAndAudiobooksListView(title: MORE_LIKE, onListEachReached: (){
-       }, isEbooks: true, ),
-        TitleAndHorizontalEbooksAndAudiobooksListView(title: E_BOOKS_FOR_YOU, onListEachReached: (){
-        }, isEbooks: true,),
-        TitleAndHorizontalEbooksAndAudiobooksListView(title: ON_YOUR_WISHLIST, onListEachReached: (){
-        }, isEbooks: true, ),
+        TitleAndHorizontalEbooksAndAudiobooksListView(
+          title: MORE_LIKE,
+          onListEachReached: () {},
+          isEbooks: true,
+          isMusicIcon: false,
+        ),
+        TitleAndHorizontalEbooksAndAudiobooksListView(
+          title: E_BOOKS_FOR_YOU,
+          onListEachReached: () {},
+          isEbooks: true,
+          isMusicIcon: false,
+        ),
+        TitleAndHorizontalEbooksAndAudiobooksListView(
+          title: ON_YOUR_WISHLIST,
+          onListEachReached: () {},
+          isEbooks: true,
+          isMusicIcon: false,
+        ),
       ],
     );
   }

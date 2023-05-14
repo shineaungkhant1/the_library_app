@@ -11,60 +11,56 @@ class TitleAndHorizontalEbooksAndAudiobooksListView extends StatelessWidget {
   final String title;
   final Function onListEachReached;
   bool isEbooks= true;
+  bool isMusicIcon;
 
    TitleAndHorizontalEbooksAndAudiobooksListView(
-      {super.key, required this.title, required this.onListEachReached,required this.isEbooks});
+      {super.key, required this.title, required this.onListEachReached,required this.isEbooks,required this.isMusicIcon});
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Container(
-          //   margin: const EdgeInsets.only(left: MARGIN_MEDIUM_2),
-          //   child: TitleText(title),
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: MARGIN_MEDIUM_2,
-                right: MARGIN_MEDIUM_2,
-                top: MARGIN_LARGE_2),
-            child: GestureDetector(
-              onTap: () {
-                (isEbooks)?Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) =>EbooksGridViewPage() )):Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) =>AudiobooksGridViewPage() ));
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:  [
-                  TitleText(title),
-                  Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    color: Colors.blue,
-                  ),
-                ],
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(
+              left: MARGIN_MEDIUM_2,
+              right: MARGIN_MEDIUM_2,
+              top: MARGIN_LARGE_2),
+          child: GestureDetector(
+            onTap: () {
+              (isEbooks)?Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) =>const EbooksGridViewPage() )):Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) =>const AudiobooksGridViewPage() ));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children:  [
+                TitleText(title),
+                const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: Colors.blue,
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: MARGIN_MEDIUM),
-          HorizontalEbooksAndAudioBooksListView(
-            onListEndReached: () {
-              onListEachReached();
-            },
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: MARGIN_MEDIUM),
+        HorizontalEbooksAndAudioBooksListView(
+          onListEndReached: () {
+            onListEachReached();
+          }, isMusicIcon: isMusicIcon,
+        ),
+      ],
     );
   }
 }
 
 class HorizontalEbooksAndAudioBooksListView extends StatelessWidget {
   final Function onListEndReached;
+  bool isMusicIcon;
 
-  const HorizontalEbooksAndAudioBooksListView(
-      {super.key, required this.onListEndReached});
+   HorizontalEbooksAndAudioBooksListView(
+      {super.key, required this.onListEndReached,required this.isMusicIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -86,14 +82,15 @@ class HorizontalEbooksAndAudioBooksListView extends StatelessWidget {
       "UX For Beginners: A Crash"
     ];
 
-    return Expanded(
+    return SizedBox(
+      height: 260,
       child: SmartHorizontalListView(
           itemCount: imgList.length,
           padding: const EdgeInsets.only(left: MARGIN_MEDIUM_2),
           itemBuilder: (BuildContext context, int index) {
             return EbooksAndAudioBooksView(
               imgList: imgList[index],
-              bookNameList: bookNameList[index],
+              bookNameList: bookNameList[index], isMusicIcon: isMusicIcon,
             );
           },
           onListEndReached: () {

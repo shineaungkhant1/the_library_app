@@ -7,23 +7,28 @@ import '../widgets/dot_bottom_sheet.dart';
 class EbooksAndAudioBooksView extends StatelessWidget {
   final String imgList;
   final String bookNameList;
+  bool isMusicIcon=true;
 
-  const EbooksAndAudioBooksView(
-      {super.key, required this.imgList, required this.bookNameList});
+   EbooksAndAudioBooksView(
+      {super.key, required this.imgList, required this.bookNameList, required this.isMusicIcon});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: MARGIN_MEDIUM),
       width: EBOOKS_AND_AUDIOBOOKS_WIDTH,
-      child: Stack(children: [
-        Column(
+      child: Stack(
+          children: [
+          Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              imgList,
-              height: 200,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                imgList,
+                height: 200,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(height: MARGIN_MEDIUM),
             Expanded(
@@ -77,6 +82,11 @@ class EbooksAndAudioBooksView extends StatelessWidget {
             ),
           ),
         ),
+        (isMusicIcon)?const Positioned(
+          bottom: 65,
+          left: 10,
+          child: MusicIconShow(isMusic: true),
+        ):Container(),
       ]),
     );
   }
