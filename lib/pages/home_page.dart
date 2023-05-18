@@ -43,17 +43,24 @@ class _HomePageState extends State<HomePage>
       'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
       'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
     ];
-    final List<double> tabHeights = [0, 0];
+
 
     final List<Widget> imageSliders = imgList
         .map(
           (item) => Container(
             margin: const EdgeInsets.all(5.0),
-            decoration: const BoxDecoration(boxShadow: [
-              BoxShadow(blurRadius: MARGIN_MEDIUM_5, color: Colors.black38)
-            ], borderRadius: BorderRadius.all(Radius.circular(15))),
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(blurRadius: MARGIN_MEDIUM_5, color: Colors.black38)
+              ],
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+            ),
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15.0),
+              ),
               child: Stack(
                 children: <Widget>[
                   Image.network(
