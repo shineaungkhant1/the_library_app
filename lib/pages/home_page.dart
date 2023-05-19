@@ -9,6 +9,7 @@ import '../custom_layouts/custom_layouts.dart';
 import '../utils/colors.dart';
 import '../utils/dimens.dart';
 import '../widgets/search_bar.dart';
+import 'bottom_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,6 +44,8 @@ class _HomePageState extends State<HomePage>
       'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
       'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
     ];
+
+
 
 
     final List<Widget> imageSliders = imgList
@@ -140,11 +143,6 @@ class _HomePageState extends State<HomePage>
         .toList();
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: const SearchBar(),
-      ),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
@@ -215,24 +213,9 @@ class _HomePageState extends State<HomePage>
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.blue,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_books_outlined),
-            label: "Library",
-          ),
-        ],
       ),
     );
   }

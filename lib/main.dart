@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_library_app/pages/bottom_nav_bar.dart';
 
 import 'pages/home_page.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'Library App',
       debugShowCheckedModeBanner: false,
-      home:HomePage(),
+      home:BottomNavBar(),
     );
   }
 }

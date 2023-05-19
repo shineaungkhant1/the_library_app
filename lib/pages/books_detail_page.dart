@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:the_library_app/widgets/rating_bar_star.dart';
+import 'package:the_library_app/pages/ratings_and_review_page.dart';
 import 'package:the_library_app/widgets/title_text.dart';
+import '../utils/colors.dart';
 import '../utils/dimens.dart';
+import '../widgets/rating_and_reviews.dart';
+import '../widgets/rating_point.dart';
+import 'about_page.dart';
 
 class BooksDetail extends StatefulWidget {
   const BooksDetail({Key? key}) : super(key: key);
@@ -24,7 +27,7 @@ class _BooksDetailState extends State<BooksDetail> {
           },
           child: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.grey,
+            color: Colors.black87,
           ),
         ),
         actions: const [
@@ -68,9 +71,200 @@ class _BooksDetailState extends State<BooksDetail> {
               padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
               child: AboutThisEbookSectionView(),
             ),
+            SizedBox(
+              height: MARGIN_MEDIUM_3,
+            ),
+            SizedBox(
+              height: MARGIN_MEDIUM_6,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
+              child: RatingFeedbackSectionView(),
+            ),
+            SizedBox(
+              height: MARGIN_LARGE,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
+              child: PublishedSectionView(),
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class PublishedSectionView extends StatelessWidget {
+  const PublishedSectionView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: const [
+        Text(
+          "Published",
+          style: TextStyle(
+              color: MAIN_HOME_SCREEN_LIST_TITLE_COLOR,
+              fontSize: TEXT_REGULAR_3X,
+              fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: MARGIN_MEDIUM,
+        ),
+        Text(
+          "December 1,2007 . Open Road + Grove/Atlantic",
+          style: TextStyle(
+            fontSize: TEXT_REGULAR_2X,
+          ),
+        ),
+        SizedBox(
+          height: MARGIN_LARGE,
+        ),
+      ],
+    );
+  }
+}
+
+
+
+class StarContainerSectionView extends StatelessWidget {
+  const StarContainerSectionView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "1",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: TEXT_REGULAR_2X,
+                ),
+              ),
+              Icon(
+                Icons.star,
+                size: 20,
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          width: MARGIN_MEDIUM_5,
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "2",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: TEXT_REGULAR_2X,
+                ),
+              ),
+              Icon(
+                Icons.star,
+                size: 20,
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          width: MARGIN_MEDIUM_5,
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "3",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: TEXT_REGULAR_2X,
+                ),
+              ),
+              Icon(
+                Icons.star,
+                size: 20,
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          width: MARGIN_MEDIUM_5,
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "4",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: TEXT_REGULAR_2X,
+                ),
+              ),
+              Icon(
+                Icons.star,
+                size: 20,
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          width: MARGIN_MEDIUM_5,
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "5",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: TEXT_REGULAR_2X,
+                ),
+              ),
+              Icon(
+                Icons.star,
+                size: 20,
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -133,7 +327,7 @@ class FreeSampleAndAddToWishlistSectionView extends StatelessWidget {
           children: const [
             Icon(
               Icons.info_outline,
-              color: Colors.grey,
+              color: Colors.black87,
             ),
             SizedBox(
               width: MARGIN_MEDIUM_3,
@@ -141,8 +335,10 @@ class FreeSampleAndAddToWishlistSectionView extends StatelessWidget {
             Expanded(
               child: Text(
                 "Books that you buy on the Google Play website can be read in this app.",
-                maxLines: 2,
-                style: TextStyle(color: Colors.grey, fontSize: MARGIN_MEDIUM_4),
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: MARGIN_MEDIUM_4,
+                ),
               ),
             )
           ],
@@ -163,17 +359,22 @@ class AboutThisEbookSectionView extends StatefulWidget {
 class _AboutThisEbookSectionViewState extends State<AboutThisEbookSectionView> {
   @override
   Widget build(BuildContext context) {
-    double rating = 4.0;
-
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TitleText("About this ebook"),
-            const Icon(
-              Icons.arrow_forward_ios_outlined,
-              color: Colors.blue,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const AboutPage()),
+                );
+              },
+              child: const Icon(
+                Icons.arrow_forward_ios_outlined,
+                color: Colors.blue,
+              ),
             )
           ],
         ),
@@ -182,7 +383,7 @@ class _AboutThisEbookSectionViewState extends State<AboutThisEbookSectionView> {
           "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis porro, qui ut expedita soluta nisi aliquid, "
           "perferendis eius blanditiis tempora cumque. Consequuntur ut magni corrupti autem suscipit quia aperiam!",
           style: TextStyle(
-            color: Colors.black45,
+            color: Colors.black87,
             fontSize: TEXT_REGULAR_2X,
           ),
         ),
@@ -193,76 +394,29 @@ class _AboutThisEbookSectionViewState extends State<AboutThisEbookSectionView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TitleText("Ratings and reviews"),
-            const Icon(
-              Icons.arrow_forward_ios_outlined,
-              color: Colors.blue,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const RatingAndReviewsPage()),
+                );
+              },
+              child: const Icon(
+                Icons.arrow_forward_ios_outlined,
+                color: Colors.blue,
+              ),
             )
           ],
         ),
         const SizedBox(
           height: MARGIN_MEDIUM_4,
         ),
-        Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  children: const [
-                    Text(
-                      "3.9",
-                      style: TextStyle(
-                          color: Colors.black, fontSize: MARGIN_XXLARGE_2),
-                    ),
-                    SizedBox(
-                      height: MARGIN_MEDIUM,
-                    ),
-                    RatingBarStar(),
-                    SizedBox(
-                      height: MARGIN_MEDIUM,
-                    ),
-                    Text(
-                      "95 ratings",
-                      style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: TEXT_REGULAR_2X,
-                      ),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "5",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: TEXT_REGULAR_2X),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12)
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(),
-                    Row(),
-                    Row(),
-                    Row(),
-                  ],
-                )
-              ],
-            ),
-            Row(),
-            Row(),
-            Row(),
-          ],
-        )
+        const RatingPointSectionView(),
       ],
     );
   }
 }
+
+
 
 class BookCoverNameAndAuthorSectionView extends StatelessWidget {
   const BookCoverNameAndAuthorSectionView({
@@ -301,11 +455,11 @@ class BookCoverNameAndAuthorSectionView extends StatelessWidget {
                   height: 1.4,
                 ),
               ),
-              SizedBox(height: MARGIN_XLARGE),
+              SizedBox(height: MARGIN_MEDIUM),
               Text(
                 "Jeanette Winterson",
                 style: TextStyle(
-                  color: Color.fromRGBO(10, 118, 189, 1.0),
+                  color: Colors.black54,
                   fontWeight: FontWeight.w600,
                 ),
               ),
