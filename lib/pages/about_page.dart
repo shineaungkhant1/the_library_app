@@ -27,7 +27,10 @@ class _AboutPageState extends State<AboutPage> {
             color: Colors.black87,
           ),
         ),
-        title: TitleText(ABOUT_PAGE_TITLE),
+        title: const Text(
+          ABOUT_PAGE_TITLE,
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -55,20 +58,20 @@ class _AboutPageState extends State<AboutPage> {
               ),
               Text(
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta totam quo repellendus voluptas delectus magni voluptatem! Fugiat consequatur velit ad asperiores dolorem debitis perferendis atque maxime. Exercitationem esse ab deserunt."
-                    " Rerum animi, similique dolores fugit error ducimus sint tempore illo dicta veritatis dolore officia! Debitis distinctio, esse error dolores perspiciatis animi saepe asperiores doloribus quod consequatur eos laboriosam natus! Necessitatibus?"
-                    "Ut, quam! Exercitationem cupiditate eaque molestiae optio vel error nostrum, culpa praesentium numquam odit corrupti perferendis nobis recusandae. Veniam maxime consectetur vel laborum commodi! Dolor, vero voluptate? Ipsa, obcaecati alias?",
+                " Rerum animi, similique dolores fugit error ducimus sint tempore illo dicta veritatis dolore officia! Debitis distinctio, esse error dolores perspiciatis animi saepe asperiores doloribus quod consequatur eos laboriosam natus! Necessitatibus?"
+                "Ut, quam! Exercitationem cupiditate eaque molestiae optio vel error nostrum, culpa praesentium numquam odit corrupti perferendis nobis recusandae. Veniam maxime consectetur vel laborum commodi! Dolor, vero voluptate? Ipsa, obcaecati alias?",
                 style:
-                TextStyle(color: Colors.black54, fontSize: TEXT_REGULAR_2X),
+                    TextStyle(color: Colors.black54, fontSize: TEXT_REGULAR_2X),
               ),
               SizedBox(
                 height: MARGIN_MEDIUM_6,
               ),
               Text(
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta totam quo repellendus voluptas delectus magni voluptatem! Fugiat consequatur velit ad asperiores dolorem debitis perferendis atque maxime. Exercitationem esse ab deserunt."
-                    " Rerum animi, similique dolores fugit error ducimus sint tempore illo dicta veritatis dolore officia! Debitis distinctio, esse error dolores perspiciatis animi saepe asperiores doloribus quod consequatur eos laboriosam natus! Necessitatibus?"
-                    "Ut, quam! Exercitationem cupiditate eaque molestiae optio vel error nostrum, culpa praesentium numquam odit corrupti perferendis nobis recusandae. Veniam maxime consectetur vel laborum commodi! Dolor, vero voluptate? Ipsa, obcaecati alias?",
+                " Rerum animi, similique dolores fugit error ducimus sint tempore illo dicta veritatis dolore officia! Debitis distinctio, esse error dolores perspiciatis animi saepe asperiores doloribus quod consequatur eos laboriosam natus! Necessitatibus?"
+                "Ut, quam! Exercitationem cupiditate eaque molestiae optio vel error nostrum, culpa praesentium numquam odit corrupti perferendis nobis recusandae. Veniam maxime consectetur vel laborum commodi! Dolor, vero voluptate? Ipsa, obcaecati alias?",
                 style:
-                TextStyle(color: Colors.black54, fontSize: TEXT_REGULAR_2X),
+                    TextStyle(color: Colors.black54, fontSize: TEXT_REGULAR_2X),
               ),
             ],
           ),
