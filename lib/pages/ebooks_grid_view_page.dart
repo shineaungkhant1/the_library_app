@@ -79,7 +79,7 @@ class _EbooksGridViewPageState extends State<EbooksGridViewPage> {
           child: GridView.builder(
               //physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  mainAxisExtent: 300,
+                  mainAxisExtent: 330,
                   maxCrossAxisExtent: 200,
                   childAspectRatio: 3 / 2,
                   crossAxisSpacing: 10,
