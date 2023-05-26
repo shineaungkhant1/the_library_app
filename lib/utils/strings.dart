@@ -19,3 +19,20 @@ List<MyRadioModel> viewList = [
   MyRadioModel(name: 'Large grid'),
   MyRadioModel(name: 'Small grid'),
 ];
+
+
+class Category {
+  final String name;
+  bool isSelected;
+
+  Category({required this.name, this.isSelected = false});
+}
+
+List<Category> categories = [
+  Category(name: 'Ebooks'),
+  Category(name: 'Audiobooks'),
+  Category(name: 'Comics'),
+  Category(name: 'Purchases'),
+  Category(name: 'Samples'),
+  Category(name: 'Uploads'),
+];
