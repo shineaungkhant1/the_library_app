@@ -4,7 +4,7 @@ import '../utils/dimens.dart';
 import '../utils/strings.dart';
 
 class CategoryChipView extends StatefulWidget {
-  const CategoryChipView({Key? key}) : super(key: key);
+
 
   @override
   State<CategoryChipView> createState() => _CategoryChipViewState();

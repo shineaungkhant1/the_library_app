@@ -30,12 +30,14 @@ class _YourBooksViewState extends State<YourBooksView> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children:  [
             CategoryChipView(),
-            SizedBox(
+            const SizedBox(
               height: MARGIN_MEDIUM_4,
             ),
-            SortByAndViewChangeView()
+            SortByAndViewChangeView(),
+
+
           ],
         ),
       ),

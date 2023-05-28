@@ -61,7 +61,8 @@ class _SortByAndViewChangeViewState extends State<SortByAndViewChangeView> {
                     setState(() {
                       selectedView = name;
                     });
-                  },);
+                  },
+                  );
                 });
           },
           child: const Icon(
@@ -73,3 +74,4 @@ class _SortByAndViewChangeViewState extends State<SortByAndViewChangeView> {
     );
   }
 }
+

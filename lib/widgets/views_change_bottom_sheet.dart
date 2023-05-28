@@ -62,6 +62,7 @@ class _ViewsChangeBottomSheetState extends State<ViewsChangeBottomSheet> {
                       }
                     });
                     widget.onNameSelected(widget.selectedName);
+                    Navigator.pop(context);
                   },
                   selected: viewList[index].isSelected,
                 ),

@@ -4,9 +4,6 @@ import 'package:the_library_app/utils/dimens.dart';
 import 'package:the_library_app/widgets/rating_and_reviews.dart';
 import 'package:the_library_app/widgets/rating_point.dart';
 
-import '../utils/strings.dart';
-import '../widgets/title_text.dart';
-
 class RatingAndReviewsPage extends StatefulWidget {
   const RatingAndReviewsPage({Key? key}) : super(key: key);
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:the_library_app/pages/bottom_nav_bar.dart';
+import 'package:hive_flutter/adapters.dart';
 
-import 'pages/home_page.dart';
+void main() async {
+  await Hive.initFlutter();
 
-void main() {
   runApp(const MyApp());
 }
 

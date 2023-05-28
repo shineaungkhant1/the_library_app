@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../pages/search_page.dart';
+import '../pages/search_book_page.dart';
 import '../utils/dimens.dart';
 
 class SearchBar extends StatelessWidget {
@@ -18,7 +17,7 @@ class SearchBar extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const SearchPage(),
+                  builder: (context) =>  SearchBookPage(),
                 ),
               );
             },
@@ -43,8 +42,8 @@ class SearchBar extends StatelessWidget {
                         SizedBox(width: MARGIN_MEDIUM_2),
                         Text(
                           "Search Play Books",
-                          style:
-                          TextStyle(fontSize: MARGIN_MEDIUM_3, color: Colors.grey),
+                          style: TextStyle(
+                              fontSize: MARGIN_MEDIUM_3, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -52,11 +51,12 @@ class SearchBar extends StatelessWidget {
                       width: CONTAINER_WIDTH,
                       height: CONTAINER_HEIGHT,
                       decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://www.animeexplained.com/wp-content/uploads/2023/04/Gojo-Satoru-e1681890431295.jpg"),
-                              fit: BoxFit.cover),),
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                "https://www.animeexplained.com/wp-content/uploads/2023/04/Gojo-Satoru-e1681890431295.jpg"),
+                            fit: BoxFit.cover),
+                      ),
                     ),
                   ],
                 ),

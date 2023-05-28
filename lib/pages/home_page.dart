@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage>
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => const BooksDetail()),
+                              builder: (context) => const BooksDetailPage()),
                         );
                       },
                       child: EbooksView(),
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage>
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => const BooksDetail()),
+                              builder: (context) => const BooksDetailPage()),
                         );
                       },
                       child: AudiobooksView(),

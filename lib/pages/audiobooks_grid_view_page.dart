@@ -73,7 +73,7 @@ class _AudiobooksGridViewPageState extends State<AudiobooksGridViewPage> {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (context) => const BooksDetail()),
+                  builder: (context) => const BooksDetailPage()),
             );
           },
           child: GridView.builder(

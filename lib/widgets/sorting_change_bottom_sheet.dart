@@ -63,6 +63,7 @@ class _SortingChangeBottomSheetState extends State<SortingChangeBottomSheet> {
                       }
                     });
                     widget.onNameSelected(widget.selectedName);
+                    Navigator.pop(context);
                   },
                   selected: radioList[index].isSelected,
                 ),

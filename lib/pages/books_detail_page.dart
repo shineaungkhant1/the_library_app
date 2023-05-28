@@ -7,14 +7,14 @@ import '../widgets/rating_and_reviews.dart';
 import '../widgets/rating_point.dart';
 import 'about_page.dart';
 
-class BooksDetail extends StatefulWidget {
-  const BooksDetail({Key? key}) : super(key: key);
+class BooksDetailPage extends StatefulWidget {
+  const BooksDetailPage({Key? key}) : super(key: key);
 
   @override
-  State<BooksDetail> createState() => _BooksDetailState();
+  State<BooksDetailPage> createState() => _BooksDetailPageState();
 }
 
-class _BooksDetailState extends State<BooksDetail> {
+class _BooksDetailPageState extends State<BooksDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
