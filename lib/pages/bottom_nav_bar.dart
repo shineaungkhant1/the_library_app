@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_library_app/pages/home_page.dart';
 import 'package:the_library_app/pages/library_page.dart';
-
 import '../widgets/search_bar.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -34,7 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: const SearchBar(),
+        title: const SearchBarPage(),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

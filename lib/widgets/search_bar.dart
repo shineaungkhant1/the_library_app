@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../pages/search_book_page.dart';
 import '../utils/dimens.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({
+class SearchBarPage extends StatelessWidget {
+  const SearchBarPage({
     super.key,
   });
 
