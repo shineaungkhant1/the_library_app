@@ -71,10 +71,10 @@ class _EbooksGridViewPageState extends State<EbooksGridViewPage> {
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                  builder: (context) => const BooksDetailPage()),
-            );
+            // Navigator.of(context).push(
+            //   MaterialPageRoute(
+            //       builder: (context) => const BooksDetailPage()),
+            // );
           },
           child: GridView.builder(
               //physics: const NeverScrollableScrollPhysics(),

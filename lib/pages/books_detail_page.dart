@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_library_app/blocs/book_detail_bloc.dart';
+import 'package:the_library_app/data/vos/book_vo.dart';
 import 'package:the_library_app/pages/ratings_and_review_page.dart';
 import 'package:the_library_app/widgets/title_text.dart';
 import '../utils/colors.dart';
@@ -8,7 +11,9 @@ import '../widgets/rating_point.dart';
 import 'about_page.dart';
 
 class BooksDetailPage extends StatefulWidget {
-  const BooksDetailPage({Key? key}) : super(key: key);
+  final BookVO? bookVO;
+
+  const BooksDetailPage({super.key, required this.bookVO});
 
   @override
   State<BooksDetailPage> createState() => _BooksDetailPageState();
@@ -17,78 +22,86 @@ class BooksDetailPage extends StatefulWidget {
 class _BooksDetailPageState extends State<BooksDetailPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.black87,
+    return ChangeNotifierProvider(
+      create: (context) => BookDetailsBloc(widget.bookVO),
+      child: Selector<BookDetailsBloc, BookVO?>(
+        selector: (context, bloc) => bloc.bookVO,
+        builder: (context, bookVO, child) => Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            automaticallyImplyLeading: false,
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.black87,
+              ),
+            ),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.all(13.0),
+                child: Image(
+                  image: AssetImage("assets/icons/export.png"),
+                  width: 20,
+                ),
+              ),
+            ],
           ),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(13.0),
-            child: Image(
-              image: AssetImage("assets/icons/export.png"),
-              width: 20,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: MARGIN_MEDIUM_5, vertical: MARGIN_LARGE),
+                  child: BookCoverNameAndAuthorSectionView(
+                    bookVO: bookVO,
+                  ),
+                ),
+                const Divider(
+                  thickness: 2,
+                ),
+                const SizedBox(
+                  height: MARGIN_MEDIUM_3,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
+                  child: FreeSampleAndAddToWishlistSectionView(),
+                ),
+                const SizedBox(
+                  height: MARGIN_MEDIUM_3,
+                ),
+                const Divider(
+                  thickness: 2,
+                ),
+                const SizedBox(
+                  height: MARGIN_MEDIUM_3,
+                ),
+                 Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
+                  child: AboutThisEbookSectionView(bookVO: bookVO,),
+                ),
+                const SizedBox(
+                  height: MARGIN_MEDIUM_3,
+                ),
+                const SizedBox(
+                  height: MARGIN_MEDIUM_6,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
+                  child: RatingFeedbackSectionView(),
+                ),
+                const SizedBox(
+                  height: MARGIN_LARGE,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
+                  child: PublishedSectionView(),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: const [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: MARGIN_MEDIUM_5, vertical: MARGIN_LARGE),
-              child: BookCoverNameAndAuthorSectionView(),
-            ),
-            Divider(
-              thickness: 2,
-            ),
-            SizedBox(
-              height: MARGIN_MEDIUM_3,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
-              child: FreeSampleAndAddToWishlistSectionView(),
-            ),
-            SizedBox(
-              height: MARGIN_MEDIUM_3,
-            ),
-            Divider(
-              thickness: 2,
-            ),
-            SizedBox(
-              height: MARGIN_MEDIUM_3,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
-              child: AboutThisEbookSectionView(),
-            ),
-            SizedBox(
-              height: MARGIN_MEDIUM_3,
-            ),
-            SizedBox(
-              height: MARGIN_MEDIUM_6,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
-              child: RatingFeedbackSectionView(),
-            ),
-            SizedBox(
-              height: MARGIN_LARGE,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: MARGIN_MEDIUM_5),
-              child: PublishedSectionView(),
-            ),
-          ],
         ),
       ),
     );
@@ -100,9 +113,9 @@ class PublishedSectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
+      children: [
         Text(
           "Published",
           style: TextStyle(
@@ -127,8 +140,6 @@ class PublishedSectionView extends StatelessWidget {
   }
 }
 
-
-
 class StarContainerSectionView extends StatelessWidget {
   const StarContainerSectionView({Key? key}) : super(key: key);
 
@@ -143,9 +154,9 @@ class StarContainerSectionView extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.grey)),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
                 "1",
                 style: TextStyle(
@@ -169,9 +180,9 @@ class StarContainerSectionView extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.grey)),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
                 "2",
                 style: TextStyle(
@@ -195,9 +206,9 @@ class StarContainerSectionView extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.grey)),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
                 "3",
                 style: TextStyle(
@@ -221,9 +232,9 @@ class StarContainerSectionView extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.grey)),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
                 "4",
                 style: TextStyle(
@@ -247,9 +258,9 @@ class StarContainerSectionView extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: Colors.grey)),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
                 "5",
                 style: TextStyle(
@@ -300,9 +311,9 @@ class FreeSampleAndAddToWishlistSectionView extends StatelessWidget {
               height: 35,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3), color: Colors.blue),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Icon(
                     Icons.bookmark_add_outlined,
                     color: Colors.white,
@@ -323,8 +334,8 @@ class FreeSampleAndAddToWishlistSectionView extends StatelessWidget {
         const SizedBox(
           height: MARGIN_MEDIUM_3,
         ),
-        Row(
-          children: const [
+        const Row(
+          children: [
             Icon(
               Icons.info_outline,
               color: Colors.black87,
@@ -349,7 +360,9 @@ class FreeSampleAndAddToWishlistSectionView extends StatelessWidget {
 }
 
 class AboutThisEbookSectionView extends StatefulWidget {
-  const AboutThisEbookSectionView({Key? key}) : super(key: key);
+  BookVO? bookVO;
+
+  AboutThisEbookSectionView({super.key, required this.bookVO});
 
   @override
   State<AboutThisEbookSectionView> createState() =>
@@ -368,7 +381,12 @@ class _AboutThisEbookSectionViewState extends State<AboutThisEbookSectionView> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const AboutPage()),
+                  MaterialPageRoute(
+                    builder: (context) => AboutPage(
+                      bookDesc: widget.bookVO?.description ?? "",
+                      bookTitle: widget.bookVO?.title ?? "",
+                    ),
+                  ),
                 );
               },
               child: const Icon(
@@ -379,10 +397,11 @@ class _AboutThisEbookSectionViewState extends State<AboutThisEbookSectionView> {
           ],
         ),
         const SizedBox(height: MARGIN_MEDIUM_3),
-        const Text(
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis porro, qui ut expedita soluta nisi aliquid, "
-          "perferendis eius blanditiis tempora cumque. Consequuntur ut magni corrupti autem suscipit quia aperiam!",
-          style: TextStyle(
+        Text(
+          widget.bookVO?.description ??
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis porro, qui ut expedita soluta nisi aliquid, "
+                  "perferendis eius blanditiis tempora cumque. Consequuntur ut magni corrupti autem suscipit quia aperiam!",
+          style: const TextStyle(
             color: Colors.black87,
             fontSize: TEXT_REGULAR_2X,
           ),
@@ -397,7 +416,8 @@ class _AboutThisEbookSectionViewState extends State<AboutThisEbookSectionView> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const RatingAndReviewsPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const RatingAndReviewsPage()),
                 );
               },
               child: const Icon(
@@ -416,12 +436,10 @@ class _AboutThisEbookSectionViewState extends State<AboutThisEbookSectionView> {
   }
 }
 
-
-
 class BookCoverNameAndAuthorSectionView extends StatelessWidget {
-  const BookCoverNameAndAuthorSectionView({
-    super.key,
-  });
+  BookVO? bookVO;
+
+  BookCoverNameAndAuthorSectionView({super.key, required this.bookVO});
 
   @override
   Widget build(BuildContext context) {
@@ -433,9 +451,10 @@ class BookCoverNameAndAuthorSectionView extends StatelessWidget {
           height: 170,
           decoration: BoxDecoration(
             color: Colors.black26,
-            image: const DecorationImage(
+            image: DecorationImage(
               image: NetworkImage(
-                "https://media.newyorker.com/photos/644832d7ed5431b8988b44c7/master/w_1600%2Cc_limit/230508_r42272web.jpg",
+                (bookVO?.bookImage ??
+                    "https://drupal.nypl.org/sites-drupal/default/files/blogs/sJ3CT4V.gif"),
               ),
               fit: BoxFit.fitHeight,
             ),
@@ -446,25 +465,25 @@ class BookCoverNameAndAuthorSectionView extends StatelessWidget {
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                "Oranges Are Not the Only Fruit",
-                style: TextStyle(
+                bookVO?.title ?? "",
+                style: const TextStyle(
                   fontSize: MARGIN_LARGE,
                   fontWeight: FontWeight.w600,
                   height: 1.4,
                 ),
               ),
-              SizedBox(height: MARGIN_MEDIUM),
+              const SizedBox(height: MARGIN_MEDIUM),
               Text(
-                "Jeanette Winterson",
-                style: TextStyle(
+                bookVO?.author ?? "",
+                style: const TextStyle(
                   color: Colors.black54,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(height: MARGIN_MEDIUM),
-              Text(
+              const SizedBox(height: MARGIN_MEDIUM),
+              const Text(
                 "Ebook . 187 pages",
                 style: TextStyle(
                   color: Color.fromRGBO(94, 98, 101, 1.0),

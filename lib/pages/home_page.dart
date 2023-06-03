@@ -192,10 +192,10 @@ class _HomePageState extends State<HomePage>
                   SingleChildScrollView(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => const BooksDetailPage()),
-                        );
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const BooksDetailPage()),
+                        // );
                       },
                       child: EbooksView(),
                     ),
@@ -203,10 +203,10 @@ class _HomePageState extends State<HomePage>
                   SingleChildScrollView(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => const BooksDetailPage()),
-                        );
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const BooksDetailPage()),
+                        // );
                       },
                       child: AudiobooksView(),
                     ),

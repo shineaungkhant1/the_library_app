@@ -64,3 +64,16 @@ const BOTTOM_SHEET_SORT_BY_TITLE = "Sort by";
 const SORT_BY_BUTTOM_SHEET_AUTHOR = "Author";
 const SORT_BY_BUTTOM_SHEET_RECENT = "Recent";
 const SORT_BY_BUTTOM_SHEET_TITLE = "Title";
+
+
+String generateCurrentTime() {
+  var now = DateTime.now();
+  return now.toString();
+
+}
+
+DateTime get timestamp {
+  final seconds = int.parse(generateCurrentTime().substring(0, 8), radix: 16);
+  final milliseconds = seconds * 1000;
+  return DateTime.fromMillisecondsSinceEpoch(milliseconds);
+}

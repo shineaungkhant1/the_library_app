@@ -172,7 +172,7 @@ Future<dynamic> _navigateToBookDetailsScreen(
   return Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => BooksDetailPage(),
+      builder: (context) => BooksDetailPage(bookVO: bookVO,),
     ),
   );
 }
